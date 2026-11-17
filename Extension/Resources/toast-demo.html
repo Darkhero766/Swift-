@@ -2,13 +2,35 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Toast demo</title>
-<style>body{font:17px/1.6 -apple-system,sans-serif;max-width:680px;margin:0 auto;padding:32px 20px;color:#1f2937;background:#fff}h1{font-size:30px}</style>
+<style>
+  body{font:17px/1.6 -apple-system,sans-serif;margin:0;padding:24px 20px 120px;color:#1f2937;background:#fff;transition:background .3s,color .3s}
+  main{max-width:680px;margin:0 auto}h1{font-size:30px}
+  .bar{position:sticky;top:0;display:flex;gap:8px;flex-wrap:wrap;padding:8px 0 16px}
+  .bar button{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid #cbd5e1;background:#f8fafc;font:600 15px -apple-system,sans-serif}
+  body.dark{background:#0b1020;color:#e5e7eb}
+  body.photo{background:linear-gradient(135deg,#fde68a,#f9a8d4 45%,#93c5fd 80%,#86efac);color:#111827}
+  body.bright{background:#fff7d6;color:#111}
+</style>
 </head><body>
-<h1>Sample article page</h1>
-<p>This stands in for any normal website. After about a second, the glass toast slides in at the bottom right. Reload the page to see it again.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum.</p>
-<p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>
-<script>window.GNT_FORCE = true;</script>
+<main>
+  <div class="bar">
+    <button data-bg="">White</button><button data-bg="dark">Dark</button>
+    <button data-bg="photo">Colourful</button><button data-bg="bright">Bright</button>
+    <button id="replay">Replay toast</button>
+  </div>
+  <h1>Sample article page</h1>
+  <p>This stands in for any website. The toast slides in after about a second. Switch the backdrop above and replay it to check legibility on light, dark and colourful pages. Swipe right on the toast to dismiss it.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum.</p>
+  <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.</p>
+  <p>Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Curabitur blandit tempus porttitor.</p>
+</main>
+<script>
+  window.GNT_FORCE = true;
+  document.querySelectorAll('[data-bg]').forEach(function (b) {
+    b.addEventListener('click', function () { document.body.className = b.dataset.bg; });
+  });
+  document.getElementById('replay').addEventListener('click', function () { if (window.__gntReplay) window.__gntReplay(); });
+</script>
 <script src="data.js"></script>
 <script src="content.js"></script>
 </body></html>
