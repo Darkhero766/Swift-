@@ -1,8 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Glass New Tab",
-  "version": "1.0.0",
-  "description": "A frosted-glass executive dashboard for every new Safari tab on iPad.",
+  "name": "Glass Toast",
+  "version": "1.1.0",
+  "description": "A discreet frosted-glass partner perk notification on the pages you browse.",
   "permissions": ["storage"],
-  "chrome_url_overrides": { "newtab": "newtab.html" }
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["data.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
 }
