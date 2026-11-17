@@ -42,10 +42,16 @@
     "background:linear-gradient(180deg,rgba(30,41,59,.78),rgba(15,23,42,.84));",
     "border:1px solid rgba(255,255,255,.18);border-top-color:rgba(255,255,255,.34);border-radius:22px;",
     "-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);",
-    "box-shadow:0 20px 40px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.16);",
+    "box-shadow:0 24px 48px rgba(0,0,0,.45),0 4px 10px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.04);",
     "opacity:0;transform:translateY(14px) scale(.98);",
     "transition:opacity .4s cubic-bezier(.2,.8,.2,1),transform .4s cubic-bezier(.2,.8,.2,1)}",
     ".toast.in{opacity:1;transform:none}",
+    ".toast::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;",
+    "background:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.20),rgba(255,255,255,0) 52%),",
+    "linear-gradient(135deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 40%,rgba(125,211,252,.00) 70%,rgba(125,211,252,.10) 100%)}",
+    ".toast::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;opacity:.14;mix-blend-mode:overlay;",
+    "background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\");background-size:160px 160px}",
+    ".head,.title,.desc,.code{position:relative;z-index:1}",
     ".head{display:flex;align-items:center;gap:12px;padding-right:44px}",
     ".badge{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;",
     "font:700 16px -apple-system,sans-serif;color:#0B1220;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 4px 10px rgba(0,0,0,.3)}",
@@ -61,8 +67,9 @@
     ".code{width:100%;min-height:44px;padding:0 16px;border-radius:14px;color:#7DD3FC;background:rgba(125,211,252,.12);",
     "border:1px dashed rgba(125,211,252,.6);letter-spacing:.04em}",
     ".code.ok{color:#86EFAC;background:rgba(74,222,128,.16);border:1px solid rgba(134,239,172,.65)}",
-    ".close{position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;border-radius:22px;background:transparent;color:#CBD5E1;font-size:18px}",
+    ".close{z-index:2;position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;border-radius:22px;background:transparent;color:#CBD5E1;font-size:18px}",
     "@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.toast{background:rgba(15,23,42,.96)}}",
+    "@media (prefers-reduced-transparency:reduce),(prefers-contrast:more){.toast::before,.toast::after{display:none}}",
     "@media (prefers-reduced-transparency:reduce){.toast{background:#0F172A;-webkit-backdrop-filter:none;backdrop-filter:none}}",
     "@media (prefers-contrast:more){.toast{background:#0B1220;border:2px solid #E2E8F0;-webkit-backdrop-filter:none;backdrop-filter:none}",
     ".code{border-style:solid}}",
@@ -82,7 +89,7 @@
     var perk = perks[Math.floor(Math.random() * perks.length)]; // one pick per page load
 
     var host = document.createElement("div");
-    host.style.cssText = "all:initial;position:fixed;z-index:2147483647;right:max(12px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));";
+    host.style.cssText = "all:initial;position:fixed;z-index:2147483647;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(28px + env(safe-area-inset-bottom,0px));";
     var root = host.attachShadow({ mode: "closed" });
     var style = document.createElement("style"); style.textContent = CSS; root.appendChild(style);
 
