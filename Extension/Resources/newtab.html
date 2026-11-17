@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>New Tab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="top">
+      <div class="clock-block">
+        <div id="clock" class="clock" aria-live="off">--:--</div>
+        <div id="date" class="date"></div>
+        <div id="greeting" class="greeting"></div>
+      </div>
+      <form id="searchForm" class="search glass" role="search" autocomplete="off">
+        <input id="searchInput" type="search" inputmode="search" enterkeyhint="search"
+               placeholder="Search the web" aria-label="Search the web"
+               autocapitalize="off" autocorrect="off" spellcheck="false">
+        <button type="submit" class="btn btn-accent" aria-label="Search">Search</button>
+      </form>
+    </header>
+
+    <section class="grid">
+      <article class="card glass" id="briefingCard">
+        <span class="pill" id="briefCategory">Briefing</span>
+        <h2 id="briefTitle"></h2>
+        <p id="briefSummary" class="secondary"></p>
+        <div class="card-foot">
+          <span id="briefCount" class="meta"></span>
+          <button id="nextBrief" class="btn" type="button">Next Briefing →</button>
+        </div>
+      </article>
+
+      <article class="card glass" id="focusCard">
+        <div class="label">Focus Timer</div>
+        <div id="timer" class="timer">25:00</div>
+        <div class="row">
+          <button id="timerStart" class="btn btn-accent" type="button">Start</button>
+          <button id="timerPause" class="btn" type="button">Pause</button>
+          <button id="timerReset" class="btn" type="button">Reset</button>
+        </div>
+        <div class="label notes-label">Scratchpad <span id="saveState" class="meta"></span></div>
+        <textarea id="notes" placeholder="Jot something down…" aria-label="Quick notes"></textarea>
+      </article>
+
+      <article class="card glass" id="perkCard">
+        <div class="sponsor">PARTNER INSIGHT • SPONSORED</div>
+        <h2 id="perkTitle"></h2>
+        <p id="perkDesc" class="secondary"></p>
+        <div class="card-foot">
+          <span id="perkPartner" class="meta"></span>
+          <button id="copyCode" class="btn code-pill" type="button">
+            <span id="copyLabel"></span>
+          </button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav class="dock glass" aria-label="Status">
+    <span>Perks Unlocked: <strong id="perksCount">0</strong></span>
+    <span class="sep" aria-hidden="true"></span>
+    <span>Focus Sessions: <strong id="sessionsCount">0</strong></span>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
